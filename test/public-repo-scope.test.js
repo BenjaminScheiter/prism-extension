@@ -13,6 +13,6 @@ test("public repository is scoped to the Chrome extension", async () => {
   }
   assert.equal(pkg.name, "prism-extension");
   assert.equal(pkg.license, "UNLICENSED");
-  assert.doesNotMatch(readme, /macOS app|MCP server|CLI|native app|static app/i);
+  assert.doesNotMatch(readme, /\b(?:macOS app|MCP server|CLI|native app|static app)\b/i);
   assert.match(readme, /Chrome extension/i);
 });
