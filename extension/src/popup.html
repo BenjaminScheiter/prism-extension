@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prism</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <span class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <defs>
+              <linearGradient id="prismMarkPopupG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff6ad5"/>
+                <stop offset=".5" stop-color="#a48bff"/>
+                <stop offset="1" stop-color="#7afdfd"/>
+              </linearGradient>
+            </defs>
+            <path d="M12 3 L21 19 H3 Z" fill="url(#prismMarkPopupG)" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" stroke-linejoin="round"/>
+            <path d="M3 19 L12 11 L21 19" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="0.9" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div>
+          <h1>Prism</h1>
+          <p>Value per token, locally.</p>
+        </div>
+      </header>
+      <section class="stats" aria-label="Last Prism run">
+        <div><strong id="before">0</strong><span>before</span></div>
+        <div><strong id="after">0</strong><span>after</span></div>
+        <div><strong id="delta">0</strong><span>delta</span></div>
+        <div><strong id="vpt">0.000</strong><span>value/token</span></div>
+        <div><strong id="vpt-delta">0.000</strong><span>v/t delta</span></div>
+        <div><strong id="artifacts">0</strong><span>artifacts</span></div>
+      </section>
+      <section class="meta" aria-label="Last Prism metadata">
+        <div><span>Site</span><strong id="surface">none</strong></div>
+        <div><span>Strategy</span><strong id="strategy">none</strong></div>
+        <div><span>Decision</span><strong id="decision">none</strong></div>
+        <div><span>Confidence</span><strong id="confidence">0%</strong></div>
+      </section>
+      <section class="actions">
+        <button id="toggle">Disable overlay</button>
+        <button id="site-toggle" type="button">Pause site</button>
+        <a href="options.html" target="_blank">Options</a>
+      </section>
+      <section id="site-access" class="site-access" hidden>
+        <p id="site-access-message"></p>
+        <div class="site-access-actions">
+          <button id="grant-site" type="button">Enable Prism on this site</button>
+          <button id="remove-site" type="button">Remove site access</button>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

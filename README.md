@@ -1,0 +1,90 @@
+# Prism
+
+Prism is a local-first Chrome extension that rewrites prompts before they are sent to AI chat apps.
+
+It is designed to make prompts clearer without changing the user's intent:
+
+- preserves exact artifacts such as code, URLs, file paths, quoted strings, dates, and JSON-like blocks
+- removes filler and duplicated wording
+- adds only necessary structure and concise output guidance
+- shows prompt metrics such as estimated tokens, artifact count, confidence, and value per token
+- runs locally in the extension package without external AI API calls
+
+## Supported Sites
+
+Prism auto-runs only on known AI chat hosts:
+
+- ChatGPT
+- Claude
+- Gemini
+- Grok
+- Perplexity
+- Kimi
+
+Users can explicitly enable Prism on another HTTPS site from the extension popup. Those grants use Chrome's optional site permissions and are stored locally by Chrome.
+
+## Privacy
+
+Prism V1 is local-first. The extension package does not call external AI APIs and does not sell, transmit, or remotely store prompt content.
+
+Chrome storage is used for extension settings, per-site enabled state, and local metrics. See [PRIVACY.md](PRIVACY.md).
+
+## Permissions
+
+- `storage`: saves local settings, per-site state, and local metrics.
+- `activeTab`: lets the popup inspect the active tab after the user opens Prism.
+- `scripting`: injects Prism on a user-approved additional site.
+- `optional_host_permissions`: lets users explicitly grant access to extra HTTPS AI sites.
+
+Required site access is limited to the supported AI chat hosts listed in `extension/manifest.json`.
+
+## Development
+
+Requirements:
+
+- Node.js 20 or newer
+- Google Chrome or Chromium for the E2E test
+- `zip` command available on PATH
+
+Run the core checks:
+
+```bash
+node --test
+node scripts/build.mjs --zip
+node scripts/e2e-extension.mjs
+node scripts/eval-prompts.mjs
+```
+
+Or run the combined QA gate:
+
+```bash
+npm run qa
+```
+
+## Build
+
+```bash
+node scripts/build.mjs --zip
+```
+
+Outputs:
+
+- unpacked extension: `dist/extension`
+- local ZIP: `dist/prism-extension-v1.0.46.zip`
+
+## Chrome Web Store Package
+
+```bash
+node scripts/release.mjs
+node scripts/verify-release.mjs
+```
+
+Outputs:
+
+- Chrome Web Store ZIP: `dist/release/prism-extension-v1.0.46-chrome-web-store.zip`
+- release manifest: `dist/release/release-manifest.json`
+- listing draft: `dist/release/CHROME_WEB_STORE_LISTING.md`
+
+## Project Scope
+
+This public repository intentionally contains only the Chrome extension implementation, local prompt engine, focused tests, and packaging scripts.

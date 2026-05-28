@@ -1,0 +1,26 @@
+{
+  "name": "prism-extension",
+  "version": "1.0.46",
+  "type": "module",
+  "description": "A local-first Chrome extension that rewrites AI prompts before sending while preserving exact artifacts.",
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build.mjs",
+    "package": "node scripts/build.mjs --zip",
+    "e2e": "node scripts/e2e-extension.mjs",
+    "eval": "node scripts/eval-prompts.mjs",
+    "qa": "node --test && node scripts/build.mjs --zip && node scripts/e2e-extension.mjs && node scripts/eval-prompts.mjs",
+    "release": "node scripts/release.mjs",
+    "release:verify": "node scripts/verify-release.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "chrome-extension",
+    "prompt-engineering",
+    "local-first",
+    "ai-tools"
+  ],
+  "license": "UNLICENSED"
+}

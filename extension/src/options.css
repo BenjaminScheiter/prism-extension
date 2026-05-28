@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #f7f2ff;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(130, 59, 42, 0.26), transparent 32rem),
+    radial-gradient(circle at 88% 18%, rgba(115, 52, 205, 0.3), transparent 30rem),
+    #111016;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+main {
+  width: min(760px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.mark {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #14101c;
+  box-shadow: 0 12px 30px rgba(20, 16, 28, 0.34);
+}
+
+.mark svg {
+  width: 23px;
+  height: 23px;
+  display: block;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+p {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.5;
+}
+
+form,
+.diagnostics,
+.install {
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+label.row {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}
+
+label span {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+select,
+input[type="range"],
+input[type="text"] {
+  width: 100%;
+}
+
+select,
+input[type="text"] {
+  min-height: 40px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 8px;
+  color: #f7f2ff;
+  background: #1d1926;
+  font: inherit;
+}
+
+input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  accent-color: #a988ff;
+}
+
+.diagnostics,
+.install {
+  margin-top: 18px;
+}
+
+button {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 8px;
+  color: #181120;
+  background: linear-gradient(135deg, #fff7fb, #d6c2ff);
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+pre {
+  overflow: auto;
+  margin: 0;
+  padding: 14px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+code {
+  color: #f8f2ff;
+}

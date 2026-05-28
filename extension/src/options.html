@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prism Options</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main>
+      <header>
+        <span class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <defs>
+              <linearGradient id="prismMarkOptionsG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ff6ad5"/>
+                <stop offset=".5" stop-color="#a48bff"/>
+                <stop offset="1" stop-color="#7afdfd"/>
+              </linearGradient>
+            </defs>
+            <path d="M12 3 L21 19 H3 Z" fill="url(#prismMarkOptionsG)" stroke="rgba(255,255,255,0.4)" stroke-width="0.8" stroke-linejoin="round"/>
+            <path d="M3 19 L12 11 L21 19" fill="none" stroke="rgba(255,255,255,0.55)" stroke-width="0.9" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div>
+          <h1>Prism Options</h1>
+          <p>Local prompt compression, adaptive structure, artifact protection, and value metrics.</p>
+        </div>
+      </header>
+
+      <form id="settings">
+        <label class="row">
+          <span>Overlay enabled</span>
+          <input name="enabled" type="checkbox">
+        </label>
+        <label class="row">
+          <span>Auto metrics</span>
+          <input name="autoMetrics" type="checkbox">
+        </label>
+        <label class="row">
+          <span>Pause Prism globally</span>
+          <input name="paused" type="checkbox">
+        </label>
+        <label>
+          <span>Rewrite mode</span>
+          <select name="mode">
+            <option value="concise">Concise</option>
+            <option value="balanced">Balanced</option>
+            <option value="structured">Structured</option>
+          </select>
+        </label>
+        <label class="row">
+          <span>Default output guidance</span>
+          <input name="defaultOutputGuidance" type="checkbox">
+        </label>
+        <label>
+          <span>Output guidance text</span>
+          <input name="outputGuidanceText" type="text" autocomplete="off" spellcheck="false" placeholder="direct, concise, complete">
+        </label>
+        <label>
+          <span>Overlay intensity</span>
+          <input name="overlayIntensity" type="range" min="0.5" max="1" step="0.01">
+        </label>
+      </form>
+
+      <section class="diagnostics">
+        <h2>Diagnostics</h2>
+        <button id="export" type="button">Export diagnostics</button>
+        <p>Exports settings and last-run metrics as a local JSON file.</p>
+      </section>
+
+      <section class="install">
+        <h2>Install command</h2>
+        <pre><code>bash scripts/install.sh</code></pre>
+        <p>Browser extension installation still requires Chrome approval. Prism never bypasses that consent step.</p>
+      </section>
+    </main>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

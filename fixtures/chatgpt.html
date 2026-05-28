@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" data-prism-provider="chatgpt">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fixture Chat</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: #f5f2ff;
+        background: #050509;
+        font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      main {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: 1fr auto;
+      }
+      .thread {
+        display: grid;
+        place-items: center;
+        color: rgba(255, 255, 255, 0.58);
+      }
+      .composer-wrap {
+        width: min(860px, calc(100vw - 32px));
+        margin: 0 auto 36px;
+      }
+      .composer {
+        position: relative;
+        min-height: 74px;
+        border-radius: 34px;
+        background: rgba(30, 28, 38, 0.96);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.42);
+      }
+      .composer-inner {
+        position: relative;
+        height: 100%;
+        border-radius: inherit;
+      }
+      .composer[data-split-surface="true"] .composer-inner {
+        height: var(--composer-inner-height, 74px);
+        background: rgba(30, 28, 38, 0.96);
+        overflow: visible;
+      }
+      textarea {
+        width: 100%;
+        min-height: 74px;
+        padding: 24px 190px 18px 190px;
+        border: 0;
+        outline: none;
+        resize: none;
+        color: #ffffff;
+        background: transparent;
+        font: inherit;
+        font-size: 16px;
+      }
+      button,
+      select {
+        position: absolute;
+        top: 14px;
+        height: 46px;
+        border: 0;
+        color: white;
+        background: rgba(255, 255, 255, 0.08);
+        font: inherit;
+      }
+      .plus {
+        left: 14px;
+        width: 46px;
+        border-radius: 50%;
+        font-size: 26px;
+      }
+      .tools {
+        left: 68px;
+        width: 108px;
+        border-radius: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .tools span,
+      .plus span,
+      .mic span,
+      .send span {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      select {
+        right: 104px;
+        width: 136px;
+        padding: 0 16px;
+        border-radius: 24px;
+      }
+      .mic {
+        right: 56px;
+        width: 40px;
+        border-radius: 50%;
+      }
+      .send {
+        right: 10px;
+        width: 46px;
+        border-radius: 50%;
+      }
+      .composer[data-grown="true"] button,
+      .composer[data-grown="true"] select {
+        top: auto;
+        bottom: 14px;
+      }
+      .composer[data-grown="true"] textarea {
+        padding-bottom: 82px;
+      }
+      .disclaimer {
+        margin: 8px 0 0;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.48);
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section class="thread">ChatGPT-style prompt surface fixture</section>
+      <section class="composer-wrap">
+        <div class="composer">
+          <div class="composer-inner">
+            <button class="plus" type="button" aria-label="Attach">
+              <span aria-label="Attach nested icon" data-testid="attach-icon" tabindex="0">+</span>
+            </button>
+            <textarea data-testid="prompt" placeholder="Message ChatGPT"></textarea>
+            <button class="tools" type="button" aria-label="Tools">
+              <span aria-label="Decorative tools glyph" data-testid="tools-glyph" tabindex="0">T</span>
+              <span data-testid="tools-label">Tools</span>
+            </button>
+            <select aria-label="Model">
+              <option>Extended Pro</option>
+              <option>Fast</option>
+            </select>
+            <button class="mic" type="button" aria-label="Voice">
+              <span aria-label="Voice nested icon" data-testid="voice-icon" tabindex="0">mic</span>
+            </button>
+            <button class="send" type="button" aria-label="Send">
+              <span aria-label="Send nested icon" data-testid="send-icon" tabindex="0">go</span>
+            </button>
+          </div>
+        </div>
+        <p class="disclaimer">ChatGPT can make mistakes. Check important info.</p>
+      </section>
+    </main>
+    <script>
+      const composer = document.querySelector(".composer");
+      const prompt = document.querySelector('[data-testid="prompt"]');
+      let delayedResizeToken = 0;
+      function resizeComposer() {
+        const hasExpandedText = prompt.value.includes("\n") || prompt.value.length > 90;
+        composer.dataset.grown = String(hasExpandedText);
+        prompt.style.height = "auto";
+        const height = hasExpandedText ? Math.min(360, Math.max(74, prompt.scrollHeight)) : 74;
+        prompt.style.height = `${height}px`;
+        composer.style.setProperty("--composer-inner-height", `${height}px`);
+        if (composer.dataset.delayHostGrowth === "true") {
+          const token = ++delayedResizeToken;
+          let frames = Number(composer.dataset.delayFrames || 5);
+          const commit = () => {
+            if (token !== delayedResizeToken) return;
+            if (frames > 0) {
+              frames -= 1;
+              requestAnimationFrame(commit);
+              return;
+            }
+            composer.style.height = `${height}px`;
+          };
+          requestAnimationFrame(commit);
+        } else {
+          composer.style.height = `${height}px`;
+        }
+      }
+      prompt.addEventListener("input", resizeComposer);
+      resizeComposer();
+    </script>
+  </body>
+</html>

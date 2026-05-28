@@ -1,0 +1,162 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 360px;
+  margin: 0;
+  color: #f6f2ff;
+  background: #121018;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+main {
+  padding: 16px;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.mark {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #14101c;
+  box-shadow: 0 10px 26px rgba(20, 16, 28, 0.34);
+}
+
+.mark svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+h1,
+p {
+  margin: 0;
+}
+
+h1 {
+  font-size: 16px;
+}
+
+p {
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.stats div,
+.meta div {
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+strong,
+span {
+  display: block;
+}
+
+strong {
+  font-size: 17px;
+}
+
+span {
+  margin-top: 3px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 10px;
+}
+
+.meta {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.meta div {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  align-items: center;
+}
+
+.meta span {
+  margin: 0;
+}
+
+.meta strong {
+  overflow: hidden;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.site-access {
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.site-access p {
+  margin-bottom: 10px;
+  line-height: 1.35;
+}
+
+.site-access-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+button,
+a {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 8px;
+  color: #16101d;
+  background: linear-gradient(135deg, #fff7fb, #d6c2ff);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 750;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a {
+  display: inline-grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+[hidden] {
+  display: none !important;
+}
