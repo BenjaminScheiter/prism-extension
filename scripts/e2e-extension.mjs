@@ -73,6 +73,7 @@ if (!chromePath) {
   throw new Error("Chrome or Chromium was not found. Set CHROME_PATH to run extension E2E.");
 }
 
+await mkdir(resolve(root, "dist"), { recursive: true });
 await writeFile(resolve(root, "dist/.e2e-ready"), "ready\n");
 const server = await startFixtureServer();
 const userDataDir = await mkdtemp(resolve(tmpdir(), "prism-chrome-"));
